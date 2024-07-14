@@ -11,6 +11,6 @@ router.post('/login', UserController.user_login);
 
 router.patch('/:userId', checkAuth, UserController.update_user);
 
-router.delete('/', checkAuth, UserController.delete_user);
+router.delete('/:userId', checkAuth, UserController.delete_user);
 
 export default router;

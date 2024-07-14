@@ -1,3 +1,4 @@
 node_modules
 item_images
 nodemon.json
+.env

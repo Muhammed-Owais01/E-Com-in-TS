@@ -5,6 +5,8 @@ import bcrypt from 'bcrypt';
 import CartDAO from '../daos/cart';
 import Cart from '../models/cart';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class UserService {
     async signUpUser(username: string, password: string): Promise<Cart> {
