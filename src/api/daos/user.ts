@@ -1,6 +1,11 @@
 import User from "../models/user";
 
 class UserDAO {
+    async getById(userId: number): Promise<User | null> {
+        const user: User | null = await User.findByPk(userId);
+        return user;
+    }
+
     async getByName(username: string): Promise<User | null> {
         const user: User | null = await User.findOne({ where: { username: username } });
         return user;

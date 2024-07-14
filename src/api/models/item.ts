@@ -1,5 +1,5 @@
 import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import sequelize from "../../db";
+import sequelize from "../config/db";
 import User from "./user";
 
 class Item extends Model<InferAttributes<Item>, InferCreationAttributes<Item>> {

@@ -1,6 +1,6 @@
 import http, { Server } from 'http';
 import app from './app';
-import sequelize from './db';
+import sequelize from './api/config/db';
 
 
 const port: string = process.env.PORT || '3000';

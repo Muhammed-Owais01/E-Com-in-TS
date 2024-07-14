@@ -1,11 +1,11 @@
 import { Dialect, Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
-    process.env.SEQUELIZE_DATABASE!, 
-    process.env.SEQUELIZE_USERNAME!, 
-    process.env.SEQUELIZE_PASSWORD!, 
+    process.env.SEQUELIZE_DATABASE as string, 
+    process.env.SEQUELIZE_USERNAME as string, 
+    process.env.SEQUELIZE_PASSWORD as string, 
     {
-        host: process.env.SEQUELIZE_HOST,
+        host: process.env.SEQUELIZE_HOST as string,
         dialect: process.env.SEQUELIZE_DIALECT as Dialect,
         logging: false
     }

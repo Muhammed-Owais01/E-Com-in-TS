@@ -1,5 +1,5 @@
 import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import sequelize from "../../db";
+import sequelize from "../config/db";
 import Cart from "./cart";
 import Item from "./item";
 
