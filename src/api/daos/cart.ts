@@ -2,8 +2,8 @@ import Cart from "../models/cart";
 import CartItem from "../models/cartItem";
 
 class CartDAO {
-    async getCart(userId: string): Promise<Cart | null> {
-        const cart: Cart | null = await Cart.findOne({ where: { userId: userId } });
+    async getCart(userId: number): Promise<Cart | null> {
+        const cart: Cart | null = await Cart.findOne({ where: { userId: userId }});
         return cart;
     }
 

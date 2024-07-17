@@ -19,7 +19,34 @@ class CartItemDAO {
         return items;
     }
 
-    async addItem(cartId: number, itemId: number, quantity: number, ) {
-        
+    async addItem(cartId: number, itemId: number, quantity: number): Promise<CartItem | null> {
+        const item: CartItem | null = await CartItem.create({
+            quantity, 
+            itemId, 
+            cartId
+        });
+        return item;
+    }
+
+    async updateQuantity(quantity: number, itemId: number, cartId: number): Promise<number> {
+        const [count]: [number] = await CartItem.update({ quantity: quantity }, 
+            { where: {
+                [Op.and]: [{ cartId: cartId }, { itemId: itemId }] 
+            }
+        });
+        return count;
+    }
+
+    async deleteItem(cartId: number, itemId: number): Promise<number> {
+        const count: number = await CartItem.destroy(
+            { where: {
+                [Op.and]: [{ cartId: cartId }, { itemId: itemId }] 
+            }
+        });
+        return count;
     }
 }
+
+const CartItemDAOObj = new CartItemDAO;
+
+export default CartItemDAOObj;

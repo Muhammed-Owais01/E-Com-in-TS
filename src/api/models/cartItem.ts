@@ -8,6 +8,7 @@ class CartItem extends Model<InferAttributes<CartItem>, InferCreationAttributes<
     declare quantity: number;
     declare cartId: ForeignKey<Cart['id']>;
     declare itemId: ForeignKey<Item['id']>;
+    declare item?: Item;
     declare createdAt?: Date;
     declare updatedAt?: Date;
 }

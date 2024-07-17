@@ -1,10 +1,12 @@
 import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import sequelize from "../config/db";
 import User from "./user";
+import CartItem from "./cartItem";
 
 class Cart extends Model<InferAttributes<Cart>, InferCreationAttributes<Cart>> {
     declare id: CreationOptional<number>;
     declare userId: ForeignKey<User['id']>;
+    declare items?: CartItem[];
     declare createdAt?: Date;
     declare updatedAt?: Date;
 }
