@@ -7,8 +7,9 @@ class Item extends Model<InferAttributes<Item>, InferCreationAttributes<Item>> {
     declare itemname: string;
     declare price: number;
     declare description: string;
-    declare itemImage: string;
+    declare itemImage: string | null;
     declare userId: ForeignKey<User['id']>;
+    declare creator?: User;
     declare createdAt?: Date;
     declare updatedAt?: Date;
 }

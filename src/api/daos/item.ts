@@ -15,7 +15,7 @@ class ItemDAO {
         return item;
     }
 
-    async getAll(limit: number, offset: number): Promise<Item[]> {
+    async getAll(limit: number | undefined, offset: number | undefined): Promise<Item[]> {
         const items: Item[] = await Item.findAll({ offset: offset, limit: limit });
         return items;
     }
@@ -25,7 +25,7 @@ class ItemDAO {
         return count;
     }
 
-    async create(itemname: string, price: number, description: string, itemImage: string, userId: number): Promise<Item | null> {
+    async create(itemname: string, price: number, description: string, userId: number, itemImage?: string): Promise<Item | null> {
         const item: Item | null = await Item.create({
             itemname,
             price,
