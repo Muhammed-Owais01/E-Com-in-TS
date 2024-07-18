@@ -22,37 +22,37 @@ class CartService {
         }
     }
 
-    async addItemToCart(cartId: number, itemId: number, quantity: number, userId: number): Promise<CartItem> {
+    async addItemToCart(itemId: number, quantity: number, userId: number): Promise<CartItem> {
         const item: Item | null = await ItemDAO.getById(itemId);
         if (!item) throw new RequestError("Item does not exist", 404);
 
         const cart: Cart | null = await CartDAO.getCart(userId);
         if (!cart) throw new RequestError("Cart does not exist", 404);
 
-        const addedItem: CartItem | null = await CartItemDAO.addItem(cartId, itemId, quantity);
+        const addedItem: CartItem | null = await CartItemDAO.addItem(cart.id, itemId, quantity);
         if (!addedItem) throw new RequestError("Could not add item to cart", 404);
 
         return addedItem;
     }
     
-    async updateQuantity(cartId: number, itemId: number, userId: number, quantity: number): Promise<void> {
+    async updateQuantity(itemId: number, userId: number, quantity: number): Promise<void> {
         const cart: Cart | null = await CartDAO.getCart(userId);
         if (!cart) throw new RequestError("Cart does not exist", 404);
 
-        const item = await CartItemDAO.getItem(cartId, itemId);
+        const item = await CartItemDAO.getItem(cart.id, itemId);
         if (!item) throw new RequestError("Item does not exist", 404);
 
-        await CartItemDAO.updateQuantity(quantity, itemId, cartId);
+        await CartItemDAO.updateQuantity(quantity, itemId, cart.id);
     }
 
-    async deleteFromCart(cartId: number, itemId: number, userId: number): Promise<void> {
+    async deleteFromCart(itemId: number, userId: number): Promise<void> {
         const cart: Cart | null = await CartDAO.getCart(userId);
         if (!cart) throw new RequestError("Cart does not exist", 404);
 
-        const item = await CartItemDAO.getItem(cartId, itemId);
+        const item = await CartItemDAO.getItem(cart.id, itemId);
         if (!item) throw new RequestError("Item does not exist", 404);
 
-        await CartItemDAO.deleteItem(cartId, itemId);
+        await CartItemDAO.deleteItem(cart.id, itemId);
     }
 }
 
