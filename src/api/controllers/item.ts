@@ -14,7 +14,7 @@ class ItemController {
     }
 
     async get_all_items(req: Request, res: Response, next: NextFunction): Promise<ReturnResponse> {
-        const { limit, page }: { limit: string, page: string } = req.body;
+        const { limit, page }: { limit: string, page: string } = req.query;
 
         const { count, items }: { count: number, items: Item[] } = await ItemService.getAllItems(limit, page);
 
